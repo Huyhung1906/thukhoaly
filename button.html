@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Example</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        body {
+            background-image: url('background.jpg');
+            background-size: cover; /* Để hình nền che phủ toàn bộ */
+            background-repeat: no-repeat; /* Không lặp lại hình nền */
+            background-position: center; /* Căn giữa hình nền */
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 300px; /* Đặt chiều rộng cho khung */
+            padding: 20px;
+            border: 2px solid #ff007f; /* Đường viền của khung */
+            border-radius: 10px;
+            background-color: #fff;
+            flex-direction: column; /* Đặt các phần tử theo chiều dọc */
+        }
+        .button-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff007f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container" >
+        <h1 >Em có yêu anh không</h1>
+        <div class="button-wrapper">
+        <button id="secondButton" onclick="navigateToPage('thukhoaly.html')">Yêu</button>
+        <button id="createButton">Không Yêu</button>
+    </div>
+        
+    </div>
+
+    <script>
+         function navigateToPage(page) {
+            window.location.href = page; // Chuyển hướng đến trang
+        }
+        function createNewButton() {
+            // Tạo một button mới
+            let newButton = document.createElement('button');
+            newButton.innerText = 'Không yêu';
+
+            // Đặt vị trí ngẫu nhiên cho button mới
+            let randomX = Math.random() * (window.innerWidth - 100); // Giới hạn chiều rộng
+            let randomY = Math.random() * (window.innerHeight - 50);  // Giới hạn chiều cao
+            newButton.style.position = 'absolute'; // Đặt vị trí tuyệt đối cho button
+            newButton.style.left = randomX + 'px';
+            newButton.style.top = randomY + 'px';
+
+            // Gắn sự kiện click cho button mới
+            newButton.addEventListener('click', function() {
+                newButton.remove();  // Xóa button hiện tại khi nhấn
+                createNewButton();   // Tạo button mới
+            });
+
+            // Thêm button vào body
+            document.body.appendChild(newButton);
+        }
+
+        // Gắn sự kiện click cho button đầu tiên
+        document.getElementById('createButton').addEventListener('click', function() {
+            this.remove(); // Xóa button hiện tại
+            createNewButton(); // Tạo button mới
+        });
+    </script>
+</body>
+</html>
